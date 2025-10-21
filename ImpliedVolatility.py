@@ -15,38 +15,26 @@ from Contracts import *
 
 
 def show_vols( underlying_code, type_str, vols, strike_prices):
-    # self.reinit(underlying_code) #一定要先调用，这样后面可以代码简洁些
-
-
 
     fix_chinese_issue()
-    # plt.xticks(range(0,len(strike_prices),1)) # 显示范围及间隔
-    # import pylab as pl
-    # plt.xticks(rotation = 30)
+
     # plot中参数的含义分别是横轴值，纵轴值，线的形状，颜色，透明度,线的宽度和标签
+    # line_colors = ['#0050f0','#20a0e0','#666666','#aaaaaa','#cccccc']
+    # line_widths = [2.0, 1.6, 1.2 ,0.8, 0.8]
 
-    line_colors = ['#0050f0','#20a0e0','#666666','#aaaaaa','#cccccc']
-    line_widths = [2.0, 1.6, 1.2 ,0.8, 0.8]
-    # if type_str == 'put':
-    #     line_color = '#0000ff'
-    n = 0
-    # while n < len(self.months):
     # 百分比显示，x100 for %
-    plt.plot(strike_prices, [x * 100 for x in vols], 'r-', color=line_colors[n], alpha=1.0, linewidth=line_widths[n], label='202510')
-    n += 1
+    plt.plot(strike_prices, [x * 100 for x in vols], 'r-', color='#0050f0', alpha=1.0, linewidth=2.0)
 
-    plt.title('实时：'+underlying_code+'隐含波动率'+type_str)
+    plt.title(underlying_code+type_str+'隐含波动率')
 
     plt.xticks(strike_prices)
-
-    # plt.legend(self.months, loc='lower right')
 
     plt.show()
 
 
 if __name__ == '__main__':
 
-    months = ak.option_sse_list_sina('50ETF') # 其它的在交易的月份是一样的，获取一次即可
+    months = ak.option_sse_list_sina('50ETF') # 其它的在交易的月份是一样的，获取其中一个即可
     assert len(months) > 0, ['月份列表不应为空！']
 
     # 获取到期天数、标的价格、无风险利率
@@ -85,4 +73,4 @@ if __name__ == '__main__':
 
     if len(vols) > 0:
         if len(vols) == len(strike_prices):
-            show_vols('上证50','str', vols, strike_prices)
+            show_vols('上证50','认购期权', vols, strike_prices)
