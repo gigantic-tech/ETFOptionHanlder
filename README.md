@@ -1,6 +1,6 @@
 # ETF期权获取工具
 
-本代码库演示了如何通过akshare获取实时的ETF期权价格，并且计算期权的隐含波动率。
+本代码库演示了如何通过akshare获取实时的ETF期权价格，如何计算期权的隐含波动率，如何计算策略组合的希腊字母（greeks），并且这些计算都是基于实时数据。
 
 ## 功能概述
 
@@ -8,6 +8,7 @@
 - 查询期权合约的实时价格和希腊字母值
 - 计算期权的隐含波动率
 - 可视化隐含波动率曲线
+- 如何实时计算策略组合的希腊字母（greeks）
 
 ## 项目结构
 
@@ -15,6 +16,7 @@
 ETFOptionHanlder/
 ├── Contracts.py           # 获取ETF期权合约信息的主要模块
 ├── ImpliedVolatility.py   # 隐含波动率计算和可视化模块
+├── Portfolio.py           # 实时计算策略组合的希腊字母（greeks）模块
 ├── requirements.txt       # 项目依赖
 └── util/                  # 工具函数
     ├── option_calculation.py  # 基本的期权计算函数
@@ -38,6 +40,13 @@ ETFOptionHanlder/
 - 获取期权合约的实时价格数据
 - 使用二分法计算隐含波动率
 - 绘制隐含波动率曲线
+
+### Portfolio.py
+
+该模块演示了如何实时计算策略组合的希腊字母（greeks）：
+- 跨式策略（Straddle）
+- 宽跨式策略（Strangle）
+- 牛市价差策略（Spread）
 
 ### util/option_calculation.py
 
@@ -78,6 +87,12 @@ python Contracts.py
 
 ```bash
 python ImpliedVolatility.py
+```
+
+### 计算策略组合的希腊字母（greeks）
+
+```bash
+python Portfolio.py
 ```
 
 ## 支持的ETF标的
